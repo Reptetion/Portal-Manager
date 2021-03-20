@@ -1,6 +1,8 @@
 //made it as 'subdatabase' because that's ReCreate's database, not Portal Manager's, so Portal Manager's database will be called bot.database(using MongoDB via quickmongo)
 
-const axios = require('axios')
+const axios = require('axios');
+
+const chalk = require('chalk');
 
 async function activatePremium() {
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
@@ -13,6 +15,9 @@ if(responses.data.status == 'PENDING') return;
 if(!await bot.subdatabase.exists(`${custom_fields['Discord ID']}.premiumuser`)) await bot.subdatabase.set(`${custom_fields['Discord ID']}.premiumuser`, true)
 
 //add a check to see if the user is in the support server and give them the donator role 
+
+console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${ID}.`))
+
 }
 
 bot.login(bot.config.token)
