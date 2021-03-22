@@ -7,7 +7,7 @@ const chalk = require('chalk');
 async function activatePremium() {
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
 headers: {
-Authorization: `Bearer ${bot.config.sellix}`
+Authorization: `Bearer ${bot.config.sellixkey}`
 }
 })
 const { custom_fields } = responses.data.orders[0]
