@@ -5,6 +5,7 @@ const axios = require('axios');
 const chalk = require('chalk');
 
 async function activatePremium() {
+
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
 headers: {
 Authorization: `Bearer ${bot.config.sellixkey}`
@@ -19,5 +20,3 @@ if(!await bot.subdb.exists(`${custom_fields['Discord ID']}.premiumuser`)) await 
 console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${ID}.`))
 
 }
-
-bot.login(bot.config.token)
