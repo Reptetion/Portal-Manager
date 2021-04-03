@@ -1,35 +1,94 @@
-const chalk = require('chalk');
+const Discord = require("discord.js");
 
-exports.run = async(bot, message, args) => {
+const db = require("quick.db");
 
-if(message.author.id == bot.config.dev) return;
+exports.run = async (client, message, args) => {
 
-if(!args.join(' ')) return message.channel.send(`${bot.config.refail} Please provide some code to evaluate!`)
+if (message.author.id !== "251143265271808001")
+return message.channel.send("Sorry, only my master can use that!") 
+     
+  function clean(text) {
+    if (typeof text === "string") {
+      return text
+        .replace(/`/g, "`" + String.fromCharCode(8203))
+        .replace(/@/g, "@" + String.fromCharCode(8203));
+    }
+    return text;
+  }
 
-let code = (lang, code) => (`\`\`\`${lang}\n${String(code).slice(0, 1000) + (code.length >= 1000 ? '...' : '')}\n\`\`\``).replace(bot.config.token, '*'.repeat(bot.config.token.length))
+  function token(input) {
+    if (typeof input === "string") {
+      return input.replace(message.client.token);
+    } else if (typeof input === "object") {
+      if (Array.isArray(input)) {
+        function hasToken(value) {
+          if (typeof value !== "string") {
+            return true;
+          }
 
-let result = new MessageEmbed()
-.setTimestamp()
+          return value !== message.client.token;
+        }
+        return input.filter(hasToken);
+      }
+      return input;
+    }
 
-try {  
-let eval = eval(args.join(' '))
-let res = (typeof evald === 'string' ? evald : inspect(evald, { depth: 0 }))
-result.setColor(bot.config.success)
-result.addField('Result', code('js', res))
-result.addField('Type', code('css', typeof evald === 'undefined' ? 'Unknown' : typeof evald))
-} catch (e) {
-result.setColor(bot.config.error)
-result.addField('Error', code('js', err))
-console.log(chalk.bgRed('[Error]: ') + chalk.red(e))
-} finally {
-msg.channel.send(result).catch(err => message.channel.send(`\`\`\`An error occured!\n\n${err.message}\`\`\``))
-}
+    return input;
+  }
 
-}
+  try {
+    let code = args.join(" ");
+    let evaled = eval(code);
+    let func = token(clean(evaled));
+    if (typeof func !== "string") {
+      func = require("util").inspect(func);
+    }
+    const output = "```js\n" + func + "\n```";
+    const Input = "```js\n" + message.content.slice(6) + "\n```";
+    let type = typeof evaled;
 
-exports.config = {
-name: 'eval',
-module: 'Developer',
-description: 'Evaluates some code.',
-usage: 'eval <code>'
-}
+      if(func.length < 1024) {
+      const embed = new Discord.MessageEmbed()
+        .addField("Eval Output", `**Type:** ${type}`)
+        .addField(":inbox_tray: Input", Input)
+        .addField(":outbox_tray: Output", output)
+        .setColor('#7777f4')
+        .setTimestamp();
+      message.channel.send({ embed });
+
+      } else {
+       const embed = new Discord.MessageEmbed()
+        .addField("Eval Output", `**Type:** ${type}`)
+        .addField(":inbox_tray: Input", Input)
+        .addField(":outbox_tray: Output", "```4268: To long to display```")
+        .setColor('#7777f4')
+        .setTimestamp();
+      message.channel.send({ embed });
+      }
+  } catch (err) {
+    let errIns = require("util").inspect(err);
+    const error = "```js\n" + errIns + "\n```";
+    const Input = "```js\n" + message.content.slice(6) + "\n```";
+    if (errIns.length < 1000) {
+      const embed = new Discord.MessageEmbed()
+        .addField("Evaluation Error", `**Type:** Error`)
+        .addField(":inbox_tray: Input", Input)
+        .addField(":x: Error", error, true)
+        .setColor('#7777f4');
+      message.channel.send({ embed });
+    } else {
+          const embed = new Discord.MessageEmbed()
+            .setTitle("Evaluation Error")
+            .addField("Evaluation", `**Type:** Error`)
+            .addField(":inbox_tray: Input", Input)
+            .addField(
+              ":x: Error",
+              "```" + err.name + ": " + err.message + "```",
+              true
+            )
+            .setColor('#7777f4')
+          message.channel.send({ embed });
+
+    }
+  }
+};

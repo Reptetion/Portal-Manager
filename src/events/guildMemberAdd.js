@@ -1,1 +1,0 @@
-//add a check to see if the user is a premium user and give them a role

@@ -1,14 +1,10 @@
-exports.run = async(bot, message, args) => {
+const db = require("quick.db");
 
-let reports = await bot.database.get(`${message.author.id}.reports`) || '0'
+exports.run = async(client, message, args) => {
 
-message.channel.send(`You have gotten ${reports} bug reports approved by the developer!`)
+let reports = db.get(`reports_${message.author.id}`);
+if(!reports) reports = "0";
 
-}  
+message.channel.send(`You have gotten **${reports}** bug reports approved by the Developer!`);
 
-exports.config = {
-name: 'reports',
-description: 'Checks how many bug reports you got approved.',
-usage: 'reports',
-aliases: []
 }
