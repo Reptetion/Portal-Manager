@@ -185,4 +185,6 @@ console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated 
 
 }
 
+await activatePremium()
+
 bot.login(bot.config.token)
