@@ -36,6 +36,7 @@ bot.aliases = new Collection()
 bot.config = require('./config.json')
 
 bot.database = new Database(bot.config.dbURL)
+bot.subdb = new Database(bot.config.subdbURL)
 
 bot.dbl = new DBL(bot.config.dbltoken, { webhookPort: 4083, webhookAuth: '8550' })
 
@@ -71,16 +72,11 @@ console.log(chalk.bgRed('[Bot]:') + chalk.red(` ${event} could not load properly
 })
 })
 
-process.on('warning', console.warn)
-process.on('unhandledRejection', error => {
-console.log(chalk.bgRed('[Error]:') + chalk.red(` ${error}`))
-}) 
-
 bot.dbl.webhook.on('ready', hook => {
-console.log(`Webhook running!`);
+console.log(chalk.bgGreen('[DBL]:') + chalk.green(' Webhook running!'))
 })
 
-dbl.webhook.on('vote', vote => {
+bot.dbl.webhook.on('vote', vote => {
 let tyforvoting = new MessageEmbed()
 .setColor(bot.config.color)
 .setTitle('Someone has voted on top.gg!')
@@ -88,7 +84,7 @@ let tyforvoting = new MessageEmbed()
 .setDescription(`<:wumpus_luv:724672126002528298> Thank you for voting, <@${vote.user}>! You have received some rewards, Enjoy!\n\n• Access to \`re!vote claim\`\n• **Supporter** badge on your profile\n• 25% XP Boost\n\nRemember to vote every 12 hours so you can keep all those goodies!`)
 .setFooter("Thank You For Supporting ReCreate!")
 bot.channels.cache.get("767103210539188286").send(tyforvoting)
-let guild = bot.guilds.cache.get('658824686997733399');
+let guild = bot.guilds.cache.get('658824686997733399')
 let role = guild.roles.cache.find(r => r.name == 'Voted')
 let member = guild.members.cache.find(v => v.id == vote.user)
 if(member) {
@@ -119,5 +115,10 @@ console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated 
 }
 
 await activatePremium()
+
+process.on('warning', console.warn)
+process.on('unhandledRejection', error => {
+console.log(chalk.bgRed('[Error]:') + chalk.red(` ${error}`))
+}) 
 
 bot.login(bot.config.token)

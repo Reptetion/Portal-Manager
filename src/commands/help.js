@@ -1,14 +1,53 @@
-const Discord = require('discord.js');
+const { MessageEmbed} = require('discord.js');
 
-exports.run = async(client, message, args) => {
+exports.run = async(bot, message, args) => {
 
-let help = new Discord.MessageEmbed()
+if(!arg[0]) {
+
+let help = new MessageEmbed()
 .setColor(bot.config.color)
-.setAuthor("Wumpus")
-.setThumbnail(client.user.avatarURL())
-.addField("Who Am I?",
-"Hey there discorder! If you don't know who I am, I am Wumpus, yes I know, the best pet in the world! I originated from Discord but after a while of scrolling through discord servers, I decided to serve to **ReCreate's Portal**!\n\n**Why Did I Decide To Serve ReCreate?**\nWell first of all, ReCreate is the best discord bot by far, and getting to help ReCreate's community is like a dream come true!\n\n**What Do I Do Here?**\nHere in ReCreate's Portal, I help moderate, manage, and keep this server in shape! So if you ever see me around, I'm probably helping out users, sending question marks or just keeping unwanted server links out of the way!"
-)
+.setTitle('Portal Manager Help')
+.setThumbnail(bot.user.avatarURL())
+.setDescription(bot.fun.map(c => `\`${c.config.name}\``).join(', '))
 message.channel.send(help)
 
+} else if(bot.commands.get(args[0])) {
+
+let command = bot.commands.get(args[0])
+
+let help = new MessageEmbed()
+.setColor(bot.config.color)
+.setTitle(`${command.config.name}`)
+.setDescription(command.config.description)
+.addField('Usage', command.config.usage)
+.setFooter('<> = Required, [] = Optional')
+if(command.config.aliases.length !== 0) help.addField('Aliases', command.config.aliases.join(', '))  
+message.channel.send(help)
+
+} else if(bot.commands.get(bot.aliases.get(args[0]))) {
+
+let command = bot.commands.get(bot.aliases.get(args[0]))
+
+let help = new MessageEmbed()
+.setColor(bot.config.color)
+.setTitle(`${command.config.name}`)
+.setDescription(command.config.description)
+.addField('Usage', command.config.usage)
+.setFooter('<> = Required, [] = Optional')
+if(command.config.aliases.length !== 0) help.addField('Aliases', command.config.aliases.join(', '))  
+message.channel.send(help)
+
+} else {
+
+return;
+        
+}
+
+}
+
+exports.config = {
+name: 'help',
+description: 'Sends a list of commands.',
+usage: 'p!help [command]',
+aliases: [ 'commands' ]
 }

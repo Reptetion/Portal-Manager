@@ -1,7 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 
-const chalk = require("chalk");
-
 const lastCmdRan = new Set();
 
 exports.run = async(bot, message) => {
@@ -16,8 +14,7 @@ if(message.content.indexOf(prefix) !== 0) return;
 if(lastCmdRan.has(message.author.id)) {
 
 message.reply('you need to chill..').then(msg => msg.delete({ timeout: 2500 }))
-console.log(chalk.bgYellow('[Bot]:') + chalk.yellow(` ${message.author.tag} [${message.author.id}] ran a command too quickly.`))
-  
+
 } else {
 
 var messageArray = message.content.split(" ") 
@@ -28,7 +25,7 @@ var commandName = arg.shift().toLowerCase()
 var command = bot.commands.get(commandName) || bot.commands.get(bot.aliases.get(commandName))                                               
 if(!command) return;
 
-command.run(bot, message, args).catch(err => message.channel.send(`**__ERROR__**:\n\n\`\`\`${err}\`\`\``))
+command.run(bot, message, args).catch(err => message.channel.send(`**__ERROR__**:\n\n\`\`\`${err}\`\`\``))  
 
 lastCmdRan.add(message.author.id)
 setTimeout(() => {
