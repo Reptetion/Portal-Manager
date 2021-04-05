@@ -16,7 +16,7 @@ if(perms.has("SEND_MESSAGES")) return message.channel.send("hm? this channel isn
 channel.updateOverwrite(role, { SEND_MESSAGES: true });
     
 let locked = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setTitle("🔓 Channel Unlocked")
 .setDescription("WOOHOO! Looks like this lockdown is over and this channel is ready to get moving!")
 channel.send(locked)

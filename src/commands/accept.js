@@ -36,14 +36,14 @@ return;
 }
 
 let congrats = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setTitle("🎉 Bug Report Approved")
 .setDescription(`Congrats, ${member.username}, your bug report has been checked over and marked as approved! Thank you for submitting this bug report, you have helped improve users' experience with ReCreate and overall made ReCreate a better discord bot! ${type}`)
 .setFooter(`Bug Reports Approved: ${reports}`)
 member.send(congrats).catch(console.error)
        
 let accepted = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setTitle("🎉 Bug Report Approved")
 .setDescription(`Congrats, **${member.user.username}**, your bug report has been checked over and marked as approved! Thank you for submitting this bug report, you have helped improve users' experience with ReCreate and overall made ReCreate a better discord bot!`)
 message.guild.channels.cache.get("735946401166524516").send(accepted)

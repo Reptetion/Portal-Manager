@@ -24,14 +24,14 @@ if(reports === null) reports = "0"
 db.delete(`bugreport_${member.id}`)
     
 let sorry = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setTitle("🛑 Bug Report Declined")
 .setDescription(`Hello, **${member.user.username}**! I am sorry to say but your bug report has been declined and marked as not a bug. Please read the description below to find out why it was denied.\n\n**Reason:** ${reason}`)
 .setFooter(`Bug Reports Approved: ${reports}`)
 member.send(sorry).catch(console.error)
        
 let declined = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setTitle("🛑 Bug Report Declined")
 .setDescription(`**Submitter:** ${member.user}\n\n**Bug Report Status:** Declined\n\n**Reason:** ${reason}`)
 message.guild.channels.cache.get("735946401166524516").send(declined)

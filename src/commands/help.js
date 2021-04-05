@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 exports.run = async(client, message, args) => {
 
 let help = new Discord.MessageEmbed()
-.setColor("#7777f4")
+.setColor(bot.config.color)
 .setAuthor("Wumpus")
 .setThumbnail(client.user.avatarURL())
 .addField("Who Am I?",
