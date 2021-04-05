@@ -25,7 +25,7 @@ let sorry = new MessageEmbed()
 .setFooter(`Bug Reports Approved: ${reports}`)
 member.send(sorry).catch(console.error)
        
-let declined = new Discord.MessageEmbed()
+let declined = new MessageEmbed()
 .setColor(bot.config.color)
 .setTitle('🛑 Bug Report Declined')
 .setDescription(`**Submitter:** ${member}\n\n**Bug Report Status:** Declined\n\n**Reason:** ${args.slice(1).join(' ')}`)
