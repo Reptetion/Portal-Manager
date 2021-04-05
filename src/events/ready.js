@@ -6,7 +6,7 @@ bot.database.on("ready", () => {
 console.log(chalk.bgGreen('[MongoDB]:') + chalk.green(' Connected to main database.'))
 })
 
-bot.database.on("ready", () => {
+bot.subdb.on("ready", () => {
 console.log(chalk.bgGreen('[MongoDB]:') + chalk.green(' Connected to sub database.'))
 })
 

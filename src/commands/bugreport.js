@@ -26,7 +26,7 @@ message.channel.send("Alright, I won't be sending that report then.")
   
 message.reply(`your report has been sent!`)
 message.author.send('You have successfully submitted your bug report! All you have to do now is wait until the developer reviews it. Once he does, I will notify you!').catch(console.error)
-await bot.database.set(`${message.author.id}.bugreport`, true)
+bot.database.set(`${message.author.id}.bugreport`, true)
     
 let report = new MessageEmbed()
 .setColor(bot.config.color)

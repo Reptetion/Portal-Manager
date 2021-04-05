@@ -43,7 +43,7 @@ func = require('util').inspect(func)
 }
     
 let output = '```js\n' + func + '\n```'
-let input = '```js\n' + message.content.slice(8) + '\n```'
+let input = '```js\n' + message.content.slice(7) + '\n```'
 let type = typeof evaled
     
 let e = new MessageEmbed()

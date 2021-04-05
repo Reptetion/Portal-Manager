@@ -21,7 +21,7 @@ message.channel.send(clean(output).substr(0, 1990) || 'No stdout', { code: "xl" 
 
 } catch(err) {
 message.channel.send(`\`\`\`xl\nERROR:\n${clean(err)}\n\`\`\``)
-console.log(chalk.bgCyan('[Bot]:') + chalk.cyan(` ${err}`))
+console.log(chalk.bgRed('[Bot]:') + chalk.red(` ${err}`))
 }
         
 }

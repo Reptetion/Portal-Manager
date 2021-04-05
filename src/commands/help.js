@@ -2,13 +2,12 @@ const { MessageEmbed} = require('discord.js');
 
 exports.run = async(bot, message, args) => {
 
-if(!arg[0]) {
+if(!args[0]) {
 
 let help = new MessageEmbed()
 .setColor(bot.config.color)
-.setTitle('Portal Manager Help')
-.setThumbnail(bot.user.avatarURL())
-.setDescription(bot.fun.map(c => `\`${c.config.name}\``).join(', '))
+.setAuthor('Portal Manager Help', bot.user.avatarURL())
+.setDescription(bot.commands.map(c => `\`${c.config.name}\``).join(', '))
 message.channel.send(help)
 
 } else if(bot.commands.get(args[0])) {

@@ -1,24 +1,24 @@
 {
-    "name": "PortalManager",
-    "version": "1.0.0",
-    "description": "Portal Manager",
-    "main": "manager.js",
-    "scripts": {
-      "start": "pm2 start Manager",
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "github": "git pull https://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@github.com/Reptetion/Portal-Manager.git"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://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@github.com/Reptetion/Portal-Manager.git"
-    },
-    "author": "Reptetion",
-    "license": "ISC",
-    "dependencies": {
-      "axios": "^0.21.1",
-      "chalk": "^4.1.0",
-      "discord.js": "^12.5.3",
-      "dblapi.js": "^2.4.0",
-      "quickmongo": "^3.0.2"
-    }
+  "name": "PortalManager",
+  "version": "1.0.0",
+  "description": "Portal Manager",
+  "main": "manager.js",
+  "scripts": {
+    "start": "pm2 start Manager",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "github": "git pull https://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@github.com/Reptetion/Portal-Manager.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/Reptetion/Portal-Manager.git"
+  },
+  "author": "Reptetion",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "discord.js": "^12.5.3",
+    "dblapi.js": "^2.4.0",
+    "quickmongo": "^3.0.2"
   }
+}

@@ -36,5 +36,6 @@ message.guild.channels.cache.get('735946401166524516').send(declined)
 exports.config = {
 name: 'decline',
 description: 'Declines a bug report.',
-usage: 'p!decline <@mention> <reason>'
+usage: 'p!decline <@mention> <reason>',
+aliases: []
 }

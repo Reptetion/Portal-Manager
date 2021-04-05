@@ -36,7 +36,7 @@ bot.aliases = new Collection()
 bot.config = require('./config.json')
 
 bot.database = new Database(bot.config.dbURL)
-bot.subdb = new Database(bot.config.subdbURL)
+bot.subdb = new Database(bot.config.subdbURL, 'Users')
 
 bot.dbl = new DBL(bot.config.dbltoken, { webhookPort: 4083, webhookAuth: '8550' })
 
@@ -62,10 +62,8 @@ files.forEach(file => {
 let eventFunc = require(`./src/events/${file}`)
 let event = file.split(".")[0]
 try {
-bot.events.set(event, eventFunc)
 bot.on(event, (...args) => eventFunc.run(bot, ...args));
 console.log(chalk.bgGreen('[Bot]:') + chalk.green(` ${event} has been loaded.`))
-console.log(chalk.bgGreen('[Bot]:') + chalk.green(` ${bot.events.size} are ready.`))
 } catch (e) {
 console.log(chalk.bgRed('[Bot]:') + chalk.red(` ${event} could not load properly. Error: ${e}`))
 }
@@ -92,29 +90,37 @@ member.roles.add(role).catch(console.error)
 }
 })
 
-async function activatePremium() {
+/*async function activatePremium() {
 
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
 headers: {
 Authorization: `Bearer ${bot.config.sellixkey}`
 }
 })
-const { custom_fields } = responses.data.orders[0]
-if(responses.data.status == 'PENDING') return;
-if(!await bot.subdb.exists(`${custom_fields['Discord ID']}.premiumuser`)) await bot.subdb.set(`${custom_fields['Discord ID']}.premiumuser`, true)
 
-let guild = bot.guilds.cache.get('658824686997733399');
+const { custom_fields } = responses.data.orders[0]
+
+if(responses.data.status !== 'COMPLETED') return;
+
+let premium = await bot.subdb.get(`${custom_fields['Discord ID']}.premiumuser`)
+if(!premium) {
+await bot.subdb.set(`${custom_fields['Discord ID']}.premiumuser`, true)
+} else {
+return;
+}
+
+let guild = bot.guilds.cache.get('658824686997733399')
 let role = guild.roles.cache.find(r => r.name == 'Donator')
-let member = guild.members.cache.find(v => v.id == vote.user)
+let member = guild.members.cache.find(m => m.id == `${custom_fields['Discord ID']}`)
 if(member) {
 member.roles.add(role).catch(console.error)
 }
 
-console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${ID}.`))
+console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${custom_fields['Discord ID']}.`))
 
 }
 
-await activatePremium()
+activatePremium()*/
 
 process.on('warning', console.warn)
 process.on('unhandledRejection', error => {
