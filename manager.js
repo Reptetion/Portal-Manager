@@ -49,7 +49,7 @@ if(command.config) {
 bot.commands.set(command.config.name, command)
 command.config.aliases.forEach(alias => bot.aliases.set(alias, command.config.name))
 console.log(chalk.bgGreen('[Bot]:') + chalk.green(` ${command.config.name} has been loaded.`))
-console.log(chalk.bgGreen('[Bot]:') + chalk.green(` ${bot.commands.size} are ready.`))
+console.log(chalk.bgGreen('[Bot]:') + chalk.green(` ${bot.commands.size} commands commands are ready.`))
 }
 } catch (e) {
 console.log(chalk.bgRed('[Bot]:') + chalk.red(` ${command.config.name} could not load properly. Error: ${e}`))
