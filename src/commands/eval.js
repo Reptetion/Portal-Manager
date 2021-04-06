@@ -17,7 +17,7 @@ return text;
 
 function token(input) {
 if(typeof input == 'string') {
-return input.replace(config.token)
+return input.replace(bot.config.token)
 } else if(typeof input == 'object') {
 if(Array.isArray(input)) {
 function hasToken(value) {
