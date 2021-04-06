@@ -5,8 +5,7 @@
   "main": "manager.js",
   "scripts": {
     "start": "pm2 start Manager",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "github": "git pull https://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@github.com/Reptetion/Portal-Manager.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
