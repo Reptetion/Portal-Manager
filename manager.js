@@ -38,7 +38,7 @@ bot.config = require('./config.json')
 bot.database = new Database(bot.config.dbURL)
 bot.subdb = new Database(bot.config.subdbURL, 'Users')
 
-bot.dbl = new DBL(bot.config.dbltoken, { webhookPort: 2603, webhookAuth: '8550' })
+bot.dbl = new DBL(bot.config.dbltoken, { webhookPort: 25, webhookAuth: '8550' })
 
 fs.readdir("./src/commands/", (err, files) => {
 files.forEach(file => {
