@@ -19,7 +19,7 @@ let locked = new MessageEmbed()
 .setColor(bot.config.color)
 .setTitle('🔒 Channel Locked')
 .setDescription('Oh no! This channel has been locked! Please check out the <#658855881915760670> channel or any other announcement channel for more info on this lockdown.')
-channel.send(channellocked)
+channel.send(locked)
     
 }
 

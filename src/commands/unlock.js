@@ -13,7 +13,7 @@ let channel = message.mentions.channels.first() || message.channel
 let perms = channel.permissionsFor(role)
 if(perms.has('SEND_MESSAGES')) return message.channel.send('Hm? This channel is not locked..')
     
-channel.updateOverwrite(role, { SEND_MESSAGES: true })
+channel.updateOverwrite(role, { SEND_MESSAGES: null })
     
 let unlocked = new MessageEmbed()
 .setColor(bot.config.color)
