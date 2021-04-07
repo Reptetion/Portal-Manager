@@ -33,7 +33,7 @@ let report = new MessageEmbed()
 .setThumbnail(bot.user.avatarURL())
 .setDescription(collected.first())
 .setFooter(`${message.author.tag} [${message.author.id}]`)
-client.channels.cache.get('735946401166524516').send(report).then(async embed => {
+bot.channels.cache.get('735946401166524516').send(report).then(async embed => {
 await embed.react('🐛')
 })
 
