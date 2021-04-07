@@ -90,7 +90,7 @@ member.roles.add(role).catch(console.error)
 }
 })
 
-/*async function activatePremium() {
+async function activatePremium() {
 
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
 headers: {
@@ -120,7 +120,7 @@ console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated 
 
 }
 
-activatePremium()*/
+activatePremium()
 
 process.on('warning', console.warn)
 process.on('unhandledRejection', error => {
