@@ -14,9 +14,8 @@ let startReport = new MessageEmbed()
 .setTitle('🐛 Bug Report In Progress')
 .setDescription(`Thank you for reaching out to us, **${message.author.username}**! Please type out your bug report and include the following:\n\n• Which command does the bug appear in?\n\n• How does this bug affect your experience with ReCreate?\n\n• How do you reproduce this bug?\n\n• Does this bug come with a **Error Code**? If so, please copy and paste it.\n\nPlease provide as much information as you can so it's easier for the developer to track it down! Once your report is submitted, the developer will take a look ar it and if your report is legit and patched, we will give you a badge and a role for your help!`)
 .setFooter('You have 2 minutes to submit your report! Type `cancel` to stop.')
-message.channel.send(startReport).then(() => {
-
-message.channel.awaitMessages(filter, { max: 1, time: 120000, errors: ['time'] }).then(collected => {
+message.channel.send(startReport)
+message.channel.awaitMessages(m => m.author.id == message.author.id, { max: 1, time: 120000 }).then(async collected => {
 
 if(collected.first().content == 'cancel') {
 
@@ -42,8 +41,6 @@ await embed.react('🐛')
 
 }).catch(collected => {
 message.reply('your report has expired!')
-})
-  
 })
 
 }
