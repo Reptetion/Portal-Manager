@@ -51,7 +51,7 @@ let e = new MessageEmbed()
 .addField('Eval Output', `**Type:** ${type}`)
 .addField(':inbox_tray: Input', input)
 .addField(':outbox_tray: Output', output)
-message.channel.send(e).catch(err => message.channel.send(`${bot.config.refail} Too long to display, sent to the console.`).then(console.log(chalk.bgCyan('[Bot]:') + chalk.cyan(` ${output}`))))
+message.channel.send(e).catch(err => message.channel.send(`Result sent to the console.`).then(console.log(chalk.bgCyan('[Bot]:') + chalk.cyan(` ${output}`))))
     
 } catch(err) {
 let errIns = require('util').inspect(err)
