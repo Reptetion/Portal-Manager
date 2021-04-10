@@ -116,6 +116,20 @@ if(member) {
 member.roles.add(role).catch(console.error)
 }
 
+let reptetion;
+try {
+reptetion = bot.users.cache.get(bot.config.dev) || await bot.users.fetch(bot.config.dev, true)
+} catch (e) {
+}
+
+let premiumPurchase = new MessageEmbed()
+.setColor('#D40086')
+.setTitle('Premium Purchase!')
+.setURL('https://dashboard.sellix.io/invoices')
+.setDescription(`\`${custom_fields['Discord ID']}\` has purchased premium!\n\n\`\`\`Purchase Info\n\nPurchase ID: ${response.data.id}\nCoupon: ${responses.data.coupon_id || 'None'} - ${responses.data.discount || '0'}% off\nStatus: ${responses.data.status}\`\`\``)
+.setTimestamp()
+reptetion.send(premiumPurchase)
+
 console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${custom_fields['Discord ID']}.`))
 
 }
