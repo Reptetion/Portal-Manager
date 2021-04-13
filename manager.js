@@ -90,6 +90,8 @@ member.roles.add(role).catch(console.error)
 }
 })
 
+async function activatePremium() {
+
 const { data: responses } = await axios.get("https://dev.sellix.io/v1/orders", {
 headers: {
 Authorization: `Bearer ${bot.config.sellixkey}`
@@ -98,7 +100,7 @@ Authorization: `Bearer ${bot.config.sellixkey}`
 
 const { custom_fields } = responses.data.orders[0]
 
-if(responses.data.status == 'COMPLETED') {
+if(responses.data.status !== 'COMPLETED') return;
 
 let premium = await bot.subdb.get(`${custom_fields['Discord ID']}.premiumuser`)
 if(!premium) {
@@ -130,9 +132,9 @@ reptetion.send(premiumPurchase)
 
 console.log(chalk.bgGreen('[User]:') + chalk.green(` Premium has been activated for ${custom_fields['Discord ID']}.`))
 
-} else {
-return;
 }
+
+activatePremium()
 
 process.on('warning', console.warn)
 process.on('unhandledRejection', error => {
