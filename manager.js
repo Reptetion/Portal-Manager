@@ -123,10 +123,10 @@ reptetion = bot.users.cache.get(bot.config.dev) || await bot.users.fetch(bot.con
 }
 
 let premiumPurchase = new MessageEmbed()
-.setColor('#D40086')
+.setColor('#76F076')
 .setTitle('Premium Purchase!')
 .setURL('https://dashboard.sellix.io/invoices')
-.setDescription(`\`${custom_fields['Discord ID']}\` has purchased premium!\n\n\`\`\`Purchase Info\n\nPurchase ID: ${response.data.id}\nCoupon: ${responses.data.coupon_id || 'None'} - ${responses.data.discount || '0'}% off\nStatus: ${responses.data.status}\`\`\``)
+.setDescription(`\`${custom_fields['Discord ID']}\` has purchased **ReCreate Premium**!\n\n\`\`\`Purchase Info\n\nPurchase ID: ${response.data.id}\nCoupon: ${responses.data.coupon_id || 'None'} - ${responses.data.discount || '0'}% off\nStatus: ${responses.data.status}\`\`\``)
 .setTimestamp()
 reptetion.send(premiumPurchase)
 
