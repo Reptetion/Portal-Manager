@@ -2,6 +2,8 @@ const { Client, Collection, MessageEmbed } = require("discord.js");
 
 const { Database } = require("quickmongo");
 
+const server = require('./server.js');
+
 const DBL = require("dblapi.js");
 
 const axios = require('axios');
