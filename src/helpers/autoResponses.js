@@ -37,30 +37,6 @@ let help = new MessageEmbed()
 message.channel.send(help)
 }
         
-if(message.content.startsWith('how do i become a partner')) {
-let help = new MessageEmbed()
-.setColor(bot.config.color)
-.setTitle('Bot Partnerships')
-.setDescription(
-"1. Your bot must be in 200+ servers. Your bot must also have a support server.\n\n" +
-    
-"2. Your bot must be neat and organized with at least 20+ commands. Plain/useless commands won't count.\n\n" +
-    
-"3. You must have a description for your bot advertisement. We do not Ping4Ping.\n\n" +
-    
-"4. Your bot must have stable uptime. We understand if your bot goes down due to host problems and updates.\n\n" +
-    
-"5. Your bot must be actively used by users. It also must be verified by Discord so we can insure that it is legit.\n\n" +
-    
-"6. Your bot must be 100% original. We do not accept bots that are cloned from a github repo or aren't coded by you.\n\n" +
-    
-"7. You must have a partner channel in your bot's support server. You must also stay in this server for the partnership to stay.\n\n" +
-    
-"All Partnered Bots will be invited* and partners will receive a partner badge on their profile as well as a role in this server. If you think you got what it takes, DM <@251143265271808001> and then your bot will be tested to see if its worthy enough!\n\n* - Only partners that invite ReCreate to their server will get their bot invited."
-)
-message.channel.send(help)   
-}
-        
 if(message.content.startsWith('what do i get for boosting') || message.content.startsWith('what perks do i get for boosting')) {
 let help = new MessageEmbed()
 .setColor(bot.config.color)
