@@ -85,7 +85,7 @@ let tyforvoting = new MessageEmbed()
 .setFooter("Thank You For Supporting ReCreate!")
 bot.channels.cache.get("767103210539188286").send(tyforvoting)
 let guild = bot.guilds.cache.get('658824686997733399')
-let role = guild.roles.cache.find(r => r.name == 'Voted')
+let role = guild.roles.cache.find(r => r.id == '784606299069218827')
 let member = guild.members.cache.find(v => v.id == vote.user)
 if(member) {
 member.roles.add(role).catch(console.error)
@@ -112,7 +112,7 @@ return;
 }
 
 let guild = bot.guilds.cache.get('658824686997733399')
-let role = guild.roles.cache.find(r => r.name == 'Donator')
+let role = guild.roles.cache.find(r => r.id == '802370096538189824')
 let member = guild.members.cache.find(m => m.id == `${custom_fields['Discord ID']}`)
 if(member) {
 member.roles.add(role).catch(console.error)
