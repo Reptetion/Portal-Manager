@@ -1,6 +1,6 @@
 <h2>Portal Manager</h2>
 
-<h4>Portal Manager is discord server manager bot specifically designed to help ReCreate's Portal which is the official support server of ReCreate Discord Bot!</h4><br>
+<h4>Portal Manager is discord server manager bot specifically designed to assist ReCreate's Portal which is the official support server of <i>ReCreate Discord Bot!</i></h4><br>
 
 <h2>What Does Portal Manager Do?</h2>
 
